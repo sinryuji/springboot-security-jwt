@@ -33,5 +33,6 @@ public class MyFilter3 implements Filter {
                 outPrintWriter.println("인증 안됨");
             }
         }
+        filterChain.doFilter(req, res);
     }
 }

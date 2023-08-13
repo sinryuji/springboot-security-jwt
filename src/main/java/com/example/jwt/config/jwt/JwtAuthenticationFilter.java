@@ -52,7 +52,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             authentication = authenticationManager.authenticate(authenticationToken);
 
             PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-            System.out.println(principalDetails.getUser().getUsername());
+            System.out.println("로그인이 성공함: " + principalDetails.getUser().getUsername());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

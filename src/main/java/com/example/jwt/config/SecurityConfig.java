@@ -1,7 +1,9 @@
 package com.example.jwt.config;
 
 import com.example.jwt.config.jwt.JwtAuthenticationFilter;
+import com.example.jwt.config.jwt.JwtAuthorizationFilter;
 import com.example.jwt.filter.MyFilter3;
+import com.example.jwt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +22,12 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig {
 
     private final CorsFilter corsFilter;
+    private final UserRepository userRepository;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-            .addFilterBefore(new MyFilter3(), BasicAuthenticationFilter.class)
+//            .addFilterBefore(new MyFilter3(), BasicAuthenticationFilter.class)
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
@@ -48,7 +51,8 @@ public class SecurityConfig {
                 AuthenticationManager.class);
             http
                 .addFilter(corsFilter)
-                .addFilter(new JwtAuthenticationFilter(authenticationManager));
+                .addFilter(new JwtAuthenticationFilter(authenticationManager))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager, userRepository));
         }
     }
 }
