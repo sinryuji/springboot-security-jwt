@@ -9,7 +9,7 @@ public class UtilConfig {
 
     // 해당 메서드의 리턴되는 오브젝트를 IOC로 등록 해준다.
     @Bean
-    public BCryptPasswordEncoder encodePwd() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
