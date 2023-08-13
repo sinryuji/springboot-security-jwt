@@ -1,5 +1,6 @@
 package com.example.jwt.config;
 
+import com.example.jwt.filter.MyFilter1;
 import com.example.jwt.filter.MyFilter3;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
